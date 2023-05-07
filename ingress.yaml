@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubi-ingress
+  labels:
+    name: kubi-ingress
+spec:
+  rules:
+  - host: kubi.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: front
+            port: 
+              number: 80

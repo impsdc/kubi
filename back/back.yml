@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: app-back
+    labels:
+        app: app-back
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: back
+    template:
+        metadata:
+            labels:
+                app: back
+        spec:
+          initContainers:
+                - name: migrations
+                  image: kubi-back
+                  command:
+                      - php
+                  args:
+                      - artisan
+                      - migrate
+                      - --force
+                  volumesMounts:
+                    - name:  back-configmap
+                      mountPath: /var/www/html
+          containers:
+            - name:  migration
+              image:  kubi-back
+              imagePullPolicy: Never
+              volumesMounts:
+                - name:  back-configmap
+                  mountPath: /var/www/html
+            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back
+spec:
+  selector:
+    app: back
+  type: ClusterIP
+  ports:
+    - port: 6001
+      targetPort: 6001
+      protocol: TCP
+

@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: back-configmap
+data:
+    app_name: Laravel
+    app_env: production
+    app_key: base64:h55oToUypq1BJwhcBAbtCnKscJGGS7xXF3zoDNf/yWE=
+    app_debug: "true"
+    app_url: http://kubi.com
+    log_channel: stderr
+    db_connection: mysql
+    db_host: mysqldb-service
+    db_port: "3306"
+    db_database: kubi
+    broadcast_driver: log
+    cache_driver: file
+    queue_connection: sync
+    session_driver: file
+    session_lifetime: "120"
+    rabbitmq_host: amqp
+    rabbitmq_port: "5672"
+    rabbitmq_vhost: /
+
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+    name: back-secret
+type: Opaque
+data:
+    db_user: eHg=
+    db_password: eHg=
