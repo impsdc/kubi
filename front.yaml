@@ -15,9 +15,13 @@ spec:
                 app: front
         spec:
           containers:
-          - image:  kubi-front
-            name:  front
-            imagePullPolicy: Never
+          - name: front
+            image: ghcr.io/impsdc/kubi-front:latest
+            imagePullPolicy: Always
+            ports:
+            - containerPort: 80
+          imagePullSecrets:
+          - name: docker-registry-key
 ---
 apiVersion: v1
 kind: Service
