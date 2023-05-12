@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubi-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/server-name: kubi.com
+  labels:
+    name: kubi-ingress
+spec:
+  rules:
+  - host: kubi.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: front-service
+            port: 
+              number: 80
+      - path: /api/
+        pathType: Prefix
+        backend:
+          service:
+            name: back-service
+            port:
+              number: 80

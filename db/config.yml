@@ -1,16 +1,8 @@
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-configmap
-data:
-  mysql_database: kubi
-  
----
-
-apiVersion: v1
 kind: Secret
 metadata:
   name: mysql-secret
 type: Opaque
 data:
-  mysql_password: password
+  DB_DATABASE: a3ViaQ==
+  DB_PASSWORD: cm9vdA==

@@ -15,36 +15,49 @@ spec:
                 app: back
         spec:
           initContainers:
-                - name: migrations
-                  image: kubi-back
-                  command:
-                      - php
-                  args:
-                      - artisan
-                      - migrate
-                      - --force
-                  volumesMounts:
-                    - name:  back-configmap
-                      mountPath: /var/www/html
+            - name: migrations
+              image: ghcr.io/impsdc/kubi-back:latest
+              imagePullPolicy: Always
+              command:
+                  - php
+              args:
+                  - artisan
+                  - migrate
+                  - --force
+              envFrom:
+                - configMapRef:
+                    name: back-configmap
+                - secretRef:
+                    name: back-secret
+                - secretRef: 
+                    name: mysql-secret 
           containers:
-            - name:  migration
-              image:  kubi-back
-              imagePullPolicy: Never
-              volumesMounts:
-                - name:  back-configmap
-                  mountPath: /var/www/html
+            - name:  back
+              image: ghcr.io/impsdc/kubi-back:latest
+              imagePullPolicy: Always
+              ports:
+              - containerPort: 80
+              envFrom:
+                - configMapRef:
+                    name: back-configmap
+                - secretRef:
+                    name: back-secret
+                - secretRef: 
+                    name: mysql-secret 
+          imagePullSecrets:
+          - name: ghcr-credentials
             
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: back
+  name: back-service
 spec:
   selector:
     app: back
   type: ClusterIP
   ports:
-    - port: 6001
-      targetPort: 6001
+    - port: 80
+      targetPort: 80
       protocol: TCP
 
