@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rabbitmq-secret
+type: Opaque
+data:
+  RABBITMQ_HOST: cmFiYml0bXE=
+  RABBITMQ_PORT: NTY3Mg==
+  RABBITMQ_USER: dGVzdAo=
+  RABBITMQ_VHOST: Lw==
+  RABBITMQ_PASSWORD: cGFzc3dvcmQ=

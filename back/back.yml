@@ -44,6 +44,8 @@ spec:
                     name: back-secret
                 - secretRef: 
                     name: mysql-secret 
+                - secretRef: 
+                    name: rabbitmq-secret 
           imagePullSecrets:
           - name: ghcr-credentials
             

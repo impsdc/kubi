@@ -1,0 +1,5 @@
+servicenameOverride: service
+auth:
+  username: test
+  password: password
+  securePassword: false 

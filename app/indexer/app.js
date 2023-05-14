@@ -4,13 +4,11 @@ const { Client } = require('@elastic/elasticsearch');
 
 
 
-const amqpUri = "amqp://user:password@amqp:5672/"
-console.log(amqpUri)
+const amqpUri = process.env["AMQP_URI"];
+if (amqpUri == null) throw Error("Missing AMQP_URI environment variable.");
+const esUri = process.env["ELASTICSEARCH_URI"];
 if (amqpUri == null)
-    throw Error('Missing AMQP_URI environment variable.');
-const esUri = "http://elasticsearch:9200"
-if (esUri == null)
-    throw Error('Missing ELASTICSEARCH_URI environment variable.');
+  throw Error("Missing ELASTICSEARCH_URI environment variable.");
 
 
 

@@ -18,10 +18,6 @@ data:
         SESSION_DRIVER=file
         SESSION_LIFETIME=120
 
-        RABBITMQ_USER=user
-        RABBITMQ_PASSWORD=password
-        RABBITMQ_VHOST=/
-
         ELASTICSEARCH_URI=
 
         ELASTICSEARCH_HOST=elasticsearch
@@ -29,26 +25,7 @@ data:
         ELASTICSEARCH_SCHEME=http
         ELASTICSEARCH_USER=elastic
         ELASTICSEARCH_PASS=changeme
-
-    # app_name: Laravel
-    # app_env: production
-    # app_key: base64:h55oToUypq1BJwhcBAbtCnKscJGGS7xXF3zoDNf/yWE=
-    # app_debug: "true"
-    # app_url: http://kubi.com
-    # log_channel: stderr
-    # db_connection: mysql
-    # db_host: mysqldb-service
-    # db_port: "3306"
-    # db_database: kubi
-    # broadcast_driver: log
-    # cache_driver: file
-    # queue_connection: sync
-    # session_driver: file
-    # session_lifetime: "120"
-    # rabbitmq_host: amqp
-    # rabbitmq_port: "5672"
-    # rabbitmq_vhost: /
-
+        
 ---
 
 apiVersion: v1
@@ -61,7 +38,4 @@ data:
     DB_PORT: MzMwNg==
     DB_HOST: bXlzcWwtc2VydmljZQ==
     DB_USERNAME: cm9vdA==
-    RABITMQ_HOST: cmFiYml0bXE=
-    RABITMQ_PORT: NTY3Mg==
-    RABITMQ_VHOST: Lw==
     

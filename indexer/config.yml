@@ -1,0 +1,7 @@
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: index-secret
+# stringData:
+#   AMQP_URI: 
+#   ELASTICSEARCH_URI: 

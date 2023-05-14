@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-index
+  labels:
+    app: app- index
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: index
+  template:
+    metadata:
+      labels:
+        app: index
+    spec:
+      containers:
+        - name: index
+          image: ghcr.io/impsdc/index:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9229
+          env:
+            - name: ELASTICSEARCH_URI
+              valueFrom:
+                secretKeyRef:
+                  name: index-secret
+                  key: eck_uri
+            - name: AMQP_URI
+              valueFrom:
+                secretKeyRef:
+                  name: index-secret
+                  key: amqp_uri
+      imagePullSecrets:
+        - name: ghcr-credentials
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: index
+spec:
+  selector:
+    app: index
+  type: ClusterIP
+  ports:
+    - port: 9229
+      targetPort: 9229
+      protocol: TCP

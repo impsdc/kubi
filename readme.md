@@ -15,3 +15,10 @@ minikube addons enable ingress
 ```
 kubectl create secret docker-registry ghcr-credentials --docker-server=https://ghcr.io --docker-username=GITUBUSERNAME --docker-password=TOKEN --docker-email=MAIL
 ```
+
+## Set up Helm repository
+
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add elastic https://helm.elastic.co
+```
