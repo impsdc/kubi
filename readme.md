@@ -4,6 +4,13 @@ Learning how to setup a fully kubernetes local cluster with minikube.
 
 Project specification [here](T-CLO-902_project.pdf)
 
+## Start Minikube with max usage
+
+```
+minikube start --vm-driver=docker --cpus 8 --memory=8192 --disk-size=50g
+
+```
+
 ## Minikube requirements
 
 ```
@@ -21,4 +28,6 @@ kubectl create secret docker-registry ghcr-credentials --docker-server=https://g
 ```
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add elastic https://helm.elastic.co
+helm install elastic-operator elastic/eck-operator -n elastic-system --create-namespace
+
 ```

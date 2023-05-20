@@ -18,13 +18,11 @@ data:
         SESSION_DRIVER=file
         SESSION_LIFETIME=120
 
-        ELASTICSEARCH_URI=
-
-        ELASTICSEARCH_HOST=elasticsearch
+        ELASTICSEARCH_HOST=els
         ELASTICSEARCH_PORT=9200
         ELASTICSEARCH_SCHEME=http
         ELASTICSEARCH_USER=elastic
-        ELASTICSEARCH_PASS=changeme
+        ELASTICSEARCH_PASS=password
         
 ---
 
