@@ -1,8 +1,15 @@
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: elastic-secret
+# type: Opaque
+# data:
+#   username: dXNlcg==
+#   password: cGFzc3dvcmQ=
+
 apiVersion: v1
 kind: Secret
 metadata:
-  name: elastic-secret
-type: Opaque
-data:
-  username: dXNlcg==
-  password: cGFzc3dvcmQ=
+  name: els-secret
+stringData:
+  ELASTICSEARCH_PASS: 1RlG2UPZlYyk50P9V1F67R06

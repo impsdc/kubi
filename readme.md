@@ -23,11 +23,17 @@ minikube addons enable ingress
 kubectl create secret docker-registry ghcr-credentials --docker-server=https://ghcr.io --docker-username=GITUBUSERNAME --docker-password=TOKEN --docker-email=MAIL
 ```
 
-## Set up Helm repository
+## Set up Helm repository for ELS ONLY HELM
 
 ```
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add elastic https://helm.elastic.co
 helm install elastic-operator elastic/eck-operator -n elastic-system --create-namespace
+helm repo add romanow https://romanow.github.io/helm-charts/
 
+```
+
+## Set up Helm repo for els operator
+```
+helm repo add elastic https://helm.elastic.co
 ```

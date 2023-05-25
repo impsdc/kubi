@@ -5,7 +5,7 @@ metadata:
 data:
     env-file: |
         APP_NAME=Laravel
-        APP_ENV=system
+        APP_ENV=production
         APP_KEY=base64:h55oToUypq1BJwhcBAbtCnKscJGGS7xXF3zoDNf/yWE=
         APP_DEBUG=true
         APP_URL=http://kubi.com
@@ -18,11 +18,13 @@ data:
         SESSION_DRIVER=file
         SESSION_LIFETIME=120
 
-        ELASTICSEARCH_HOST=els
-        ELASTICSEARCH_PORT=9200
+        ELASTICSEARCH_URI=http://elatic:1RlG2UPZlYyk50P9V1F67R06@elasticsearch-es-http:9200/
+
+        ELASTICSEARCH_HOST=elasticsearch-es-http
+        ELASTICSEARCH_PORT=9200 
         ELASTICSEARCH_SCHEME=http
         ELASTICSEARCH_USER=elastic
-        ELASTICSEARCH_PASS=password
+        ELASTICSEARCH_USER=1RlG2UPZlYyk50P9V1F67R06
         
 ---
 

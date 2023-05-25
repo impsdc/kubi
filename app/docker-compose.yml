@@ -19,16 +19,17 @@ services:
       context: ./back
       dockerfile: Dockerfile
     tty: true
-    command: /bin/bash -c "php artisan migrate:refresh && service nginx start && php-fpm"
+    command: /bin/bash -c "service nginx start && php-fpm"
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch-es-http
+      - ELASTICSEARCH_PORT=9200 
+      - ELASTICSEARCH_SCHEME=http
+      - ELASTICSEARCH_USER=elastic
+      - ELASTICSEARCH_PASS=password
     ports:
       - 8080:80
-    networks:
-      - elastic
-
     depends_on:
       - db
-      - elasticsearch
-      - amqp
 
   front:
     container_name: front
@@ -49,46 +50,3 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
-
-  indexer:
-    container_name: indexer
-    build:
-      context: ./indexer
-      dockerfile: Dockerfile
-    tty: true
-    ports:
-      - 5000:80
-    networks:
-      - elastic
-
-    depends_on:
-      - elasticsearch
-      - amqp
-
-  elasticsearch:
-    container_name: es-container
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - MAX_LOCKED_MEMORY=unlimited
-      - "discovery.zen.ping.unicast.hosts=elasticsearch"
-      - http.cors.enabled=true
-      - http.cors.allow-origin=*
-      - discovery.zen.minimum_master_nodes=2
-      - ELASTIC_USER=user
-      - ELASTIC_PASSWORD=password
-    deploy:
-      mode: replicated
-      replicas: 1
-      resources:
-        limits:
-          memory: 1000M
-    ports:
-      - 9200:9200
-
-networks:
-  elastic:
-    name: elastic
-    driver: bridge

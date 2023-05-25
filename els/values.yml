@@ -17,3 +17,11 @@
 # antiAffinity: ""
 
 # createCert: false
+
+security:
+  # -- Enable security
+  enabled: true
+  # -- Default username
+  name: elastic
+  # -- Default password
+  password: password

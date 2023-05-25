@@ -16,7 +16,7 @@ spec:
         spec:
           initContainers:
             - name: migrations
-              image: ghcr.io/impsdc/kubi-back:latest
+              image: ghcr.io/benjyhy/back:latest
               imagePullPolicy: Always
               command:
                   - php
@@ -33,10 +33,10 @@ spec:
                     name: mysql-secret 
           containers:
             - name:  back
-              image: ghcr.io/impsdc/kubi-back:latest
+              image: ghcr.io/benjyhy/back:latest
               imagePullPolicy: Always
               ports:
-              - containerPort: 80
+              - containerPort: 6001
               envFrom:
                 - configMapRef:
                     name: back-configmap
@@ -47,7 +47,7 @@ spec:
                 - secretRef: 
                     name: rabbitmq-secret 
           imagePullSecrets:
-          - name: ghcr-credentials
+          - name: ghcr-credentials-benji
             
 ---
 apiVersion: v1
@@ -59,7 +59,7 @@ spec:
     app: back
   type: ClusterIP
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 6001
+      targetPort: 6001
       protocol: TCP
 

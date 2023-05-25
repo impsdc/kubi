@@ -25,4 +25,4 @@ spec:
           service:
             name: back-service
             port:
-              number: 80
+              number: 6001
